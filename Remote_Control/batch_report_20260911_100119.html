@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>批量远控测试报告</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", Arial, sans-serif; background: #f0f2f5; padding: 20px; }
+.container { max-width: 1400px; margin: 0 auto; }
+h1 { text-align: center; color: #333; margin-bottom: 5px; }
+.subtitle { text-align: center; color: #999; font-size: 13px; margin-bottom: 20px; }
+.summary { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
+.summary-box { padding: 8px 20px; border-radius: 6px; text-align: center; color: white; font-size: 14px; font-weight: bold; }
+.summary-pass { background: #52c41a; }
+.summary-fail { background: #ff4d4f; }
+.summary-total { background: #1890ff; }
+.summary-nodata { background: #faad14; }
+.card { background: white; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); margin-bottom: 6px; overflow: hidden; }
+.arrow { font-size: 11px; margin-right: 4px; color: rgba(255,255,255,0.7); }
+.card-title { color: white; padding: 6px 12px; font-size: 13px; font-weight: bold; cursor: pointer; }
+.round-sep { text-align: center; padding: 4px; font-size: 13px; font-weight: bold; color: #666; background: #f5f5f5; border-radius: 4px; margin: 4px 0; }
+.badge { display: inline-block; background: rgba(255,255,255,0.25); border-radius: 3px; padding: 1px 8px; font-size: 11px; float: right; }
+.card-body { display: flex; gap: 0; font-size: 12px; }
+.col { flex: 1; padding: 6px 10px; border-right: 1px solid #f0f0f0; min-width: 0; }
+.col:last-child { border-right: none; }
+.col-title { font-size: 12px; font-weight: bold; color: #1565c0; margin-bottom: 4px; padding-bottom: 2px; border-bottom: 1px solid #e3f2fd; }
+.info-row { padding: 2px 0 2px 4px; font-size: 12px; }
+.label { color: #888; font-weight: bold; }
+.label::after { content: "："; }
+.val { color: #333; }
+.no-data { color: #999; font-style: italic; font-size: 12px; }
+.sig-block { background: #f8f9fa; border-radius: 4px; padding: 4px 6px; margin: 3px 0; }
+.sig-name { font-weight: bold; color: #333; font-size: 12px; margin-bottom: 2px; }
+.frame-row { display: flex; flex-wrap: wrap; gap: 3px; margin: 2px 0; }
+.frame { display: inline-block; background: #e3f2fd; border-radius: 3px; padding: 1px 6px; font-size: 11px; }
+.footer { text-align: center; color: #999; font-size: 11px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>批量远控测试报告</h1>
+<div class="subtitle">生成时间: 20260911_100119</div>
+<div class="summary">
+    <div class="summary-box summary-total">总执行: 11</div>
+    <div class="summary-box summary-pass">PASS: 0</div>
+    <div class="summary-box summary-fail">FAIL: 0</div>
+    <div class="summary-box summary-nodata">NODATA: 11</div>
+</div>
+
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [1] 门锁 → 解锁  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [2] 门锁 → 闭锁  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [3] 远程启动 → 启动  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [4] 远程启动 → 关闭  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [5] 远程启动 → 启动  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [6] 一键制冷 → 开启  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [7] 一键制冷 → 关闭  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [8] 一键加热 → 开启  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [9] 一键加热 → 关闭  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [10] 一键制冷 → 开启  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title" style="background:#faad14" onclick="toggleBody(this)">
+                <span class="arrow">▶</span> [11] 空调 → 关闭  <span class="badge">NODATA</span>
+            </div>
+            <div class="card-body" style="display:none">
+                <div class="col">
+                    <div class="col-title">TSP 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">TBOX 结果</div>
+                    <div class="no-data">未查询到数据</div>
+                </div>
+                <div class="col">
+                    <div class="col-title">信号解析</div>
+                </div>
+            </div>
+        </div>
+<div class="footer">报告路径: D:/实车半自动化/Test_AUTO/Remote_Control\batch_report_20260911_100119.html</div>
+</div>
+<script>
+function toggleBody(title) {
+    var body = title.nextElementSibling;
+    var arrow = title.querySelector('.arrow');
+    if (body.style.display === 'none') {
+        body.style.display = 'flex';
+        arrow.textContent = '▼';
+    } else {
+        body.style.display = 'none';
+        arrow.textContent = '▶';
+    }
+}
+</script>
+</body>
+</html>

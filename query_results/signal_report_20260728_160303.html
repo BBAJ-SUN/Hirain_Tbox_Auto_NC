@@ -1,0 +1,5378 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车辆信号数据报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", "Segoe UI", Arial, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            color: white;
+            padding: 25px 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .header .info {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 15px;
+        }
+        .stats-item {
+            text-align: center;
+        }
+        .stats-item .value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .stats-item .label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        .query-info {
+            margin-top: 12px;
+            font-size: 13px;
+            opacity: 0.85;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #1976d2;
+            color: white;
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            white-space: nowrap;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        th:last-child {
+            border-right: none;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+        }
+        tr:hover {
+            background: #f5f9ff;
+        }
+        tr:nth-child(even) {
+            background: #fafbfc;
+        }
+        tr:nth-child(even):hover {
+            background: #f0f5ff;
+        }
+        .status-ok {
+            color: #52c41a;
+            font-weight: bold;
+        }
+        .status-error {
+            color: #ff4d4f;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #999;
+            font-size: 12px;
+        }
+        /* 列宽设置 */
+        .col-seq { width: 60px; }
+        .col-canid { width: 80px; }
+        .col-code { width: 90px; }
+        .col-name { min-width: 150px; }
+        .col-explain { min-width: 180px; }
+        .col-english { min-width: 160px; }
+        .col-number { width: 120px; }
+        .col-status { width: 70px; }
+        .col-value { min-width: 100px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>车辆信号数据报告</h1>
+            <div class="info">生成时间: 2026-07-28 16:03:10</div>
+            <div class="stats">
+                <div class="stats-item">
+                    <div class="value">398</div>
+                    <div class="label">数据总条数</div>
+                </div>
+            </div>
+            <div class="query-info">
+                <span>VIN: LA9AEPG2XHHLJK001</span>
+                <span>applicationId: 3</span>
+                <span>messageType: 7</span>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="col-seq">序号</th>
+                        <th class="col-canid">CANID</th>
+                        <th class="col-code">信号编号</th>
+                        <th class="col-name">中文名称</th>
+                        <th class="col-explain">中文解释</th>
+                        <th class="col-english">英文名称</th>
+                        <th class="col-number">精度转换</th>
+                        <th class="col-number">信号编号(number)</th>
+                        <th class="col-status">状态</th>
+                        <th class="col-value">上报TSP值</th>
+                        <th class="col-value">总线值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td>1</td>
+                <td>519</td>
+                <td>507</td>
+                <td>实时SOH值</td>
+                <td>-</td>
+                <td>BMS_SOH_EST</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>100</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>310</td>
+                <td>527</td>
+                <td>非法进入报警</td>
+                <td>BCM防盗状态</td>
+                <td>BCM_AntiTheftSts</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>TBOX</td>
+                <td>528</td>
+                <td>GPS位置信号</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>115862608</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>TBOX</td>
+                <td>528</td>
+                <td>GPS位置信号</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>28523050</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>TBOX</td>
+                <td>528</td>
+                <td>GPS位置信号</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>525</td>
+                <td>533</td>
+                <td>续航总里程</td>
+                <td>续航里程</td>
+                <td>IC_DTE</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>4095</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>310</td>
+                <td>534</td>
+                <td>车门状态</td>
+                <td>右后门状态</td>
+                <td>BCM_DoorStsRearRi</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>310</td>
+                <td>534</td>
+                <td>车门状态</td>
+                <td>左后门状态</td>
+                <td>BCM_DoorStsRearLe</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>310</td>
+                <td>534</td>
+                <td>车门状态</td>
+                <td>右前门状态</td>
+                <td>BCM_DoorStsFrntRi</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>310</td>
+                <td>534</td>
+                <td>车门状态</td>
+                <td>左前门状态</td>
+                <td>BCM_DoorStsFrntLe</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>318</td>
+                <td>535</td>
+                <td>车灯状态</td>
+                <td>仪表后雾灯指示</td>
+                <td>BCM_RearFogLmpSts</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>318</td>
+                <td>535</td>
+                <td>车灯状态</td>
+                <td>仪表前雾灯指示</td>
+                <td>BCM_FrntFogLmpSts</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>318</td>
+                <td>535</td>
+                <td>车灯状态</td>
+                <td>仪表位置灯指示</td>
+                <td>BCM_PosLmpSts</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>318</td>
+                <td>535</td>
+                <td>车灯状态</td>
+                <td>近光灯指示</td>
+                <td>BCM_LowBeamSts</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>318</td>
+                <td>535</td>
+                <td>车灯状态</td>
+                <td>远光灯指示</td>
+                <td>BCM_HighBeamSts</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>310</td>
+                <td>535</td>
+                <td>车灯状态</td>
+                <td>转向指示灯</td>
+                <td>BCM_TurnIndicatorSts</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>318</td>
+                <td>535</td>
+                <td>车灯状态</td>
+                <td>日间行车灯状态</td>
+                <td>BCM_DayRunningLampSts </td>
+                <td>-</td>
+                <td>7</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>318</td>
+                <td>535</td>
+                <td>车灯状态</td>
+                <td>预留</td>
+                <td>-</td>
+                <td>-</td>
+                <td>8</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>310</td>
+                <td>536</td>
+                <td>车锁状态</td>
+                <td>左前车门锁状态</td>
+                <td>BCM_DoorLockStsFrntLe</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>310</td>
+                <td>536</td>
+                <td>车锁状态</td>
+                <td>右前车门锁状态</td>
+                <td>BCM_DoorLockStsFrntRi</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>310</td>
+                <td>536</td>
+                <td>车锁状态</td>
+                <td>左后车门锁状态</td>
+                <td>BCM_DoorLockStsRearLe</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>310</td>
+                <td>536</td>
+                <td>车锁状态</td>
+                <td>右后车门锁状态</td>
+                <td>BCM_DoorLockStsRearRi</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>310</td>
+                <td>536</td>
+                <td>车锁状态</td>
+                <td>预留</td>
+                <td>-</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>24</td>
+                <td>310</td>
+                <td>540</td>
+                <td>雨刮状态</td>
+                <td>前雨刮状态</td>
+                <td>BCM_FrontWiperSts</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>25</td>
+                <td>510</td>
+                <td>541</td>
+                <td>安全带状态</td>
+                <td>驾驶员安全带提醒</td>
+                <td>IC_SBR_Driver</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>26</td>
+                <td>1A5</td>
+                <td>542</td>
+                <td>远程控制模式</td>
+                <td>远程开启状态</td>
+                <td>PEPS_Remotestartstatus </td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>27</td>
+                <td>313</td>
+                <td>544</td>
+                <td>车外温度</td>
+                <td>环境温度信号</td>
+                <td>BCM_OutsideTemp</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>14325</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>28</td>
+                <td>362</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>左后内胎压压力_卡车</td>
+                <td>LRI_Pressure </td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>29</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>左后内胎温度_卡车</td>
+                <td>TPMS_Tire_Temperature</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>30</td>
+                <td>362</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>右后内胎压压力_卡车</td>
+                <td>RRI_Pressure </td>
+                <td>100</td>
+                <td>3</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>31</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>右后内胎温度_卡车</td>
+                <td>TPMS_Tire_Temperature</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>32</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>左前胎压压力_卡车</td>
+                <td>TPMS_LF_Pressure </td>
+                <td>100</td>
+                <td>5</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>33</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>左前胎温度_卡车</td>
+                <td>TPMS_Tire_Temperature</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>34</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>右前胎压压力_卡车</td>
+                <td>TPMS_RF_Pressure </td>
+                <td>100</td>
+                <td>7</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>35</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>右前胎温度_卡车</td>
+                <td>TPMS_Tire_Temperature</td>
+                <td>-</td>
+                <td>8</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>36</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>左后胎压压力_卡车</td>
+                <td>TPMS_LR_Pressure </td>
+                <td>100</td>
+                <td>9</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>37</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>左后胎温度_卡车</td>
+                <td>TPMS_Tire_Temperature</td>
+                <td>-</td>
+                <td>10</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>38</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>右后胎压压力_卡车</td>
+                <td>TPMS_RR_Pressure</td>
+                <td>100</td>
+                <td>11</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>39</td>
+                <td>361</td>
+                <td>575</td>
+                <td>四轮轮胎信息</td>
+                <td>右后胎温度_卡车</td>
+                <td>TPMS_Tire_Temperature</td>
+                <td>-</td>
+                <td>12</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>40</td>
+                <td>361</td>
+                <td>577</td>
+                <td>TPMS指示灯状态</td>
+                <td>-</td>
+                <td>TPMS_Lamp_Status </td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>41</td>
+                <td>313</td>
+                <td>583</td>
+                <td>电源状态</td>
+                <td>OFF/ACC/ON/START状态</td>
+                <td>BCM_PowerMode</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>42</td>
+                <td>541</td>
+                <td>584</td>
+                <td>蓄电池电压</td>
+                <td>蓄电池电压</td>
+                <td>EBS_U_BATT</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1262</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>43</td>
+                <td>540</td>
+                <td>585</td>
+                <td>空调模式</td>
+                <td>空调风量</td>
+                <td>ACM_Blower_Level</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>15</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>44</td>
+                <td>540</td>
+                <td>585</td>
+                <td>空调模式</td>
+                <td>吹风模式</td>
+                <td>ACM_Mode_Status</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>45</td>
+                <td>540</td>
+                <td>586</td>
+                <td>空调自动模式</td>
+                <td>-</td>
+                <td>ACM_AUTO_Status</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>46</td>
+                <td>614</td>
+                <td>588</td>
+                <td>加速踏板 新能源</td>
+                <td>加速踏板位置</td>
+                <td>VCU_AccRAWPedalRatio_GB </td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>47</td>
+                <td>107或614</td>
+                <td>589</td>
+                <td>刹车踏板状态-新能源</td>
+                <td>刹车踏板信号     </td>
+                <td>VCU_BrkPedalStasus_GB1</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>48</td>
+                <td>638</td>
+                <td>590</td>
+                <td>ESP指示灯</td>
+                <td>ESP指示灯</td>
+                <td>IC_ESPLamp</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>49</td>
+                <td>310</td>
+                <td>592</td>
+                <td>MT车型倒档信号</td>
+                <td>倒档信号</td>
+                <td>BCM_Reverse_gear</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>50</td>
+                <td>243</td>
+                <td>594</td>
+                <td>手刹信号</td>
+                <td>电子手刹</td>
+                <td>ESP_EPBStatus</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>51</td>
+                <td>175</td>
+                <td>601</td>
+                <td>方向盘转角</td>
+                <td>方向盘转角</td>
+                <td>SAS_SteerWheelAngle</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>52</td>
+                <td>175</td>
+                <td>602</td>
+                <td>方向盘转角加速度</td>
+                <td>方向盘转角加速度</td>
+                <td>SAS_SteerWheelRotSpd</td>
+                <td>1000</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>53</td>
+                <td>523</td>
+                <td>605</td>
+                <td>绝缘电阻</td>
+                <td>正极绝缘阻值(kΩ)</td>
+                <td>BMS_PosInsuRes_MEAS_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>59500</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>54</td>
+                <td>611</td>
+                <td>612</td>
+                <td>电机信号</td>
+                <td>电机序号(默认值1)</td>
+                <td>MCU_SerialNum_EST_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>55</td>
+                <td>611</td>
+                <td>612</td>
+                <td>电机信号</td>
+                <td>电机控制器温度</td>
+                <td>MCU_InvTemp_MEAS_GB</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>56</td>
+                <td>611</td>
+                <td>612</td>
+                <td>电机信号</td>
+                <td>电机温度</td>
+                <td>MCU_MotTemp_MEAS_GB</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>57</td>
+                <td>612</td>
+                <td>612</td>
+                <td>电机信号</td>
+                <td>直流电压</td>
+                <td>MCU_Voltage_MEAS_GB</td>
+                <td>100</td>
+                <td>4</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>58</td>
+                <td>612</td>
+                <td>612</td>
+                <td>电机信号</td>
+                <td>直流电流</td>
+                <td>MCU_Current_MEAS_GB</td>
+                <td>100</td>
+                <td>5</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>59</td>
+                <td>291</td>
+                <td>624</td>
+                <td>剩余充电时间</td>
+                <td>-</td>
+                <td>BMS_RemainChargeTime_EST</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>60</td>
+                <td>291</td>
+                <td>625</td>
+                <td>充电类型</td>
+                <td>充电模式</td>
+                <td>BMS_ChargMode_STS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>61</td>
+                <td>328</td>
+                <td>626</td>
+                <td>电池子系统极值信号</td>
+                <td>最高单体电压箱号</td>
+                <td>BMS_PackNumMaxCellVol_EST_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>62</td>
+                <td>328</td>
+                <td>626</td>
+                <td>电池子系统极值信号</td>
+                <td>最高单体电压电芯号</td>
+                <td>BMS_CellNumMaxCellVol_ESTT_GB</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>66</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>63</td>
+                <td>328</td>
+                <td>626</td>
+                <td>电池子系统极值信号</td>
+                <td>最高单体电压</td>
+                <td>BMS_MaxCellVol_MEAS_GB</td>
+                <td>1000</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>3330</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>64</td>
+                <td>328</td>
+                <td>626</td>
+                <td>电池子系统极值信号</td>
+                <td>最低单体电压箱号</td>
+                <td>BMS_PackNumMinCellVol_ESTT_GB</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>65</td>
+                <td>328</td>
+                <td>626</td>
+                <td>电池子系统极值信号</td>
+                <td>最低单体电压电芯号</td>
+                <td>BMS_CellNumMinCellVol_ESTT_GB</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>39</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>66</td>
+                <td>328</td>
+                <td>626</td>
+                <td>电池子系统极值信号</td>
+                <td>最低单体电压</td>
+                <td>BMS_MinCellVol_MEAST_GB</td>
+                <td>1000</td>
+                <td>6</td>
+                <td class="status-ok">正常</td>
+                <td>3326</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>67</td>
+                <td>329</td>
+                <td>627</td>
+                <td>温度极值信号</td>
+                <td>最高单体温度箱号</td>
+                <td>BMS_PackNumMaxCellTemp_EST_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>68</td>
+                <td>329</td>
+                <td>627</td>
+                <td>温度极值信号</td>
+                <td>最高单体温度探针号</td>
+                <td>BMS_ProbeNumMaxCellTemp_EST_GB</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>3</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>69</td>
+                <td>329</td>
+                <td>627</td>
+                <td>温度极值信号</td>
+                <td>最高单体温度</td>
+                <td>BMS_MaxCellTemp_MEAS_GB</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>31</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>70</td>
+                <td>329</td>
+                <td>627</td>
+                <td>温度极值信号</td>
+                <td>最低单体温度箱号</td>
+                <td>BMS_PackNumMinCellTemp_EST_GB</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>71</td>
+                <td>329</td>
+                <td>627</td>
+                <td>温度极值信号</td>
+                <td>最低单体温度探针号</td>
+                <td>BMS_ProbeNumMinCellTemp_EST_GB</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>72</td>
+                <td>329</td>
+                <td>627</td>
+                <td>温度极值信号</td>
+                <td>最低单体温度</td>
+                <td>BMS_MinCellTemp_MEAS_GB</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>73</td>
+                <td>TBOX</td>
+                <td>628</td>
+                <td>GPS车速</td>
+                <td>-</td>
+                <td>-</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>74</td>
+                <td>TBOX</td>
+                <td>635</td>
+                <td>T-BOX系统告警信号</td>
+                <td>T-BOX进入超高压压区</td>
+                <td>-</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>75</td>
+                <td>TBOX</td>
+                <td>635</td>
+                <td>T-BOX系统告警信号</td>
+                <td>T-BOX进入高压压区</td>
+                <td>-</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>76</td>
+                <td>TBOX</td>
+                <td>635</td>
+                <td>T-BOX系统告警信号</td>
+                <td>T-BOX进入低压压区</td>
+                <td>-</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>77</td>
+                <td>TBOX</td>
+                <td>635</td>
+                <td>T-BOX系统告警信号</td>
+                <td>T-BOX进入超低压压区</td>
+                <td>-</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>78</td>
+                <td>TBOX</td>
+                <td>635</td>
+                <td>T-BOX系统告警信号</td>
+                <td>T-BOX进入备用电池供电模式</td>
+                <td>-</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>79</td>
+                <td>TBOX</td>
+                <td>635</td>
+                <td>T-BOX系统告警信号</td>
+                <td>T-BOX进入低功耗休眠</td>
+                <td>-</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>80</td>
+                <td>TBOX</td>
+                <td>635</td>
+                <td>T-BOX系统告警信号</td>
+                <td>T-BOX进入超低功耗休眠</td>
+                <td>-</td>
+                <td>-</td>
+                <td>7</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>81</td>
+                <td>584</td>
+                <td>642</td>
+                <td>运输模式</td>
+                <td>-</td>
+                <td>BCM_CarModeIndicator</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>82</td>
+                <td>1A5</td>
+                <td>645</td>
+                <td>剩余远程启动时间</td>
+                <td>剩余启动时间(分）</td>
+                <td>PEPS_RemainStartMin</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>83</td>
+                <td>1A5</td>
+                <td>645</td>
+                <td>剩余远程启动时间</td>
+                <td>剩余启动时间(秒）</td>
+                <td>PEPS_RemainStartSec</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>84</td>
+                <td>540</td>
+                <td>646</td>
+                <td>设定温度</td>
+                <td>主驾当前设定温度</td>
+                <td>ACM_DriverTempSetStatus</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>85</td>
+                <td>540</td>
+                <td>647</td>
+                <td>显示屏状态</td>
+                <td>显示屏状态</td>
+                <td>ACM_LCD_Status</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>86</td>
+                <td>361</td>
+                <td>649</td>
+                <td>轮胎位置</td>
+                <td>-</td>
+                <td>Tire_Position </td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>87</td>
+                <td>181</td>
+                <td>662</td>
+                <td>插枪状态</td>
+                <td>插枪充电状态，用于APP显示</td>
+                <td>BMS_Chg_STS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>88</td>
+                <td>291</td>
+                <td>662</td>
+                <td>插枪状态</td>
+                <td>慢充枪插入状态</td>
+                <td>BMS_AcChgGunIn_STS</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>89</td>
+                <td>291</td>
+                <td>662</td>
+                <td>插枪状态</td>
+                <td>快充枪插入状态</td>
+                <td>BMS_DcChgGunIn_STS</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>90</td>
+                <td>362</td>
+                <td>665</td>
+                <td>胎压告警</td>
+                <td>左后内胎压告警</td>
+                <td>LRI_Pressure_Warning </td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>91</td>
+                <td>362</td>
+                <td>665</td>
+                <td>胎压告警</td>
+                <td>右后内胎压告警</td>
+                <td>RRI_Pressure_Warning </td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>92</td>
+                <td>361</td>
+                <td>665</td>
+                <td>胎压告警</td>
+                <td>左前轮胎胎压告警</td>
+                <td>TPMS_LF_Pressure_Warning </td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>93</td>
+                <td>361</td>
+                <td>665</td>
+                <td>胎压告警</td>
+                <td>右前轮胎胎压告警</td>
+                <td>TPMS_RF_Pressure_Warning </td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>94</td>
+                <td>361</td>
+                <td>665</td>
+                <td>胎压告警</td>
+                <td>右后轮胎胎压告警</td>
+                <td>TPMS_RR_Pressure_Warning </td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>95</td>
+                <td>361</td>
+                <td>665</td>
+                <td>胎压告警</td>
+                <td>左后轮胎胎压告警</td>
+                <td>TPMS_LR_Pressure_Warning</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>96</td>
+                <td>542</td>
+                <td>677</td>
+                <td>蓄电池SOC</td>
+                <td>-</td>
+                <td>EBS_SOC</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>87</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>97</td>
+                <td>TBOX</td>
+                <td>679</td>
+                <td>蓄电池电压(TBOX采集)</td>
+                <td>-</td>
+                <td>-</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1244</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>98</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+BCM网络管理报文SleepInd状态</td>
+                <td>BCM_NMSI_Status</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>99</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+PEPS网络管理报文SleepInd状态</td>
+                <td>PEPS_NMSI_Status</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>100</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+IC网络管理报文SleepInd状态</td>
+                <td>IC_NMSI_Status</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>101</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+IVI网络管理报文SleepInd状态</td>
+                <td>IVI_NMSI_Status</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>102</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+PLGM网络管理报文SleepInd状态</td>
+                <td>PLGM_NMSI_Status</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>103</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+APM网络管理报文SleepInd状态</td>
+                <td>APM_NMSI_Status</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>104</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+RTM网络管理报文SleepInd状态</td>
+                <td>RTM_NMSI_Status</td>
+                <td>-</td>
+                <td>7</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>105</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+BLE网络管理报文SleepInd状态</td>
+                <td>BLE_NMSI_Status</td>
+                <td>-</td>
+                <td>8</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>106</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+SCMM网络管理报文SleepInd状态</td>
+                <td>SCMM_NMSI_Status</td>
+                <td>-</td>
+                <td>9</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>107</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+SOD网络管理报文SleepInd状态</td>
+                <td>SOD_NMSI_Status</td>
+                <td>-</td>
+                <td>10</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>108</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+TBOX网络管理报文SleepInd状态</td>
+                <td>TBOX_NMSI_Status</td>
+                <td>-</td>
+                <td>11</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>109</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+网关BCAN网络管理报文SleepInd状态</td>
+                <td>GW_BCANNMSI_Status</td>
+                <td>-</td>
+                <td>12</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>110</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+网关CCAN网络管理报文SleepInd状态</td>
+                <td>GW_CCANNMSI_Status</td>
+                <td>-</td>
+                <td>13</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>111</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+网关TCAN网络管理报文SleepInd状态</td>
+                <td>GW_TCANNMSI_Status</td>
+                <td>-</td>
+                <td>14</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>112</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+网关PCAN网络管理报文SleepInd状态</td>
+                <td>GW_PCANNMSI_Status</td>
+                <td>-</td>
+                <td>15</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>113</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+网关HyCAN网络管理报文SleepInd状态</td>
+                <td>GW_HyCANNMSI_Status</td>
+                <td>-</td>
+                <td>16</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>114</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+TPMS网络管理报文SleepInd状态</td>
+                <td>TPMS_NMSI_Status</td>
+                <td>-</td>
+                <td>17</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>115</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+VCU网络管理报文SleepInd状态</td>
+                <td>VCU_NMSI_Status</td>
+                <td>-</td>
+                <td>18</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>116</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+OBC网络管理报文SleepInd状态</td>
+                <td>OBC_NMSI_Status</td>
+                <td>-</td>
+                <td>19</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>117</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+BMS网络管理报文SleepInd状态</td>
+                <td>BMS_NMSI_Status</td>
+                <td>-</td>
+                <td>20</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>118</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+AC网络管理报文SleepInd状态</td>
+                <td>ACM_NMSI_Status</td>
+                <td>-</td>
+                <td>21</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>119</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+TCU网络管理报文SleepInd状态</td>
+                <td>TCU_NMSI_Status</td>
+                <td>-</td>
+                <td>22</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>120</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+SWM网络管理报文SleepInd状态</td>
+                <td>SWM_NMSI_Status</td>
+                <td>-</td>
+                <td>23</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>121</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+WACM网络管理报文SleepInd状态</td>
+                <td>WACM_NMSI_Status</td>
+                <td>-</td>
+                <td>24</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>122</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>EPS网络管理报文Sleeplnd状态</td>
+                <td>EPS_NMSI_Status</td>
+                <td>-</td>
+                <td>25</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>123</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>TCM网络管理报文Sleeplnd状态</td>
+                <td>TCM_NMSI_Status</td>
+                <td>-</td>
+                <td>26</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>124</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>ESCL网络管理报文Sleeplnd状态</td>
+                <td>ESCL_NMSI_Status</td>
+                <td>-</td>
+                <td>27</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>125</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>PSDMR网络管理报文Sleeplnd状态</td>
+                <td>PSDMR_NMSI_Status</td>
+                <td>-</td>
+                <td>28</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>126</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>VSD网络管理报文Sleeplnd状态</td>
+                <td>VSD_NMSI_Status</td>
+                <td>-</td>
+                <td>29</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>127</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>IPB网络管理报文Sleeplnd状态</td>
+                <td>IPB_NMSI_Status</td>
+                <td>-</td>
+                <td>30</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>128</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>RBU网络管理报文Sleeplnd状态</td>
+                <td>RBU_NMSI_Status</td>
+                <td>-</td>
+                <td>31</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>129</td>
+                <td>588</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>HQA网络管理报文Sleeplnd状态</td>
+                <td>HQA_NMSI_Status</td>
+                <td>-</td>
+                <td>32</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>130</td>
+                <td>589</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+PCAN唤醒源节点</td>
+                <td>PCAN_Alive_ECU</td>
+                <td>-</td>
+                <td>33</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>131</td>
+                <td>589</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+CCAN唤醒源节点</td>
+                <td>CCAN_Alive_ECU</td>
+                <td>-</td>
+                <td>34</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>132</td>
+                <td>589</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+BCAN唤醒源节点</td>
+                <td>BCAN_Alive_ECU</td>
+                <td>-</td>
+                <td>35</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>133</td>
+                <td>589</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+TCAN唤醒源节点</td>
+                <td>TCAN_Alive_ECU</td>
+                <td>-</td>
+                <td>36</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>134</td>
+                <td>589</td>
+                <td>687</td>
+                <td>整车网络管理报文</td>
+                <td>
+HyCAN唤醒源节点</td>
+                <td>HyCANNM_Alive_ECU</td>
+                <td>-</td>
+                <td>37</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>135</td>
+                <td>243</td>
+                <td>689</td>
+                <td>地形模式</td>
+                <td>-</td>
+                <td>ESP_ATS_Driving_mode_confirm</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>136</td>
+                <td>387</td>
+                <td>696</td>
+                <td>保养里程</td>
+                <td>-</td>
+                <td>IC_ChangOilDistance</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>32763</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>137</td>
+                <td>542</td>
+                <td>697</td>
+                <td>蓄电池健康状态SOH</td>
+                <td>SOH误差</td>
+                <td>EBS_SOH_COR_STATE</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>2</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>138</td>
+                <td>542</td>
+                <td>697</td>
+                <td>蓄电池健康状态SOH</td>
+                <td>SOH数值</td>
+                <td>EBS_SOH_COR</td>
+                <td>10000</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>93125</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>139</td>
+                <td>584</td>
+                <td>698</td>
+                <td>能量管理等级</td>
+                <td>-</td>
+                <td>BCM_LoadManageLevel</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>140</td>
+                <td>603</td>
+                <td>794</td>
+                <td>BCM不休眠原因1</td>
+                <td>-</td>
+                <td>BCM_stay_awake_source1</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>273</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>141</td>
+                <td>603</td>
+                <td>795</td>
+                <td>BCM不休眠原因2</td>
+                <td>-</td>
+                <td>BCM_stay_awake_source2</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>8</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>142</td>
+                <td>358</td>
+                <td>799</td>
+                <td>智能补电状态</td>
+                <td>-</td>
+                <td>VCU_PwrSulHVOnSts</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>143</td>
+                <td>TBOX</td>
+                <td>811</td>
+                <td>整车数据</td>
+                <td>定位状态</td>
+                <td>-</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>144</td>
+                <td>614</td>
+                <td>812</td>
+                <td>整车数据</td>
+                <td>车辆状态</td>
+                <td>VCU_TBOX_Veh_STS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>2</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>145</td>
+                <td>614</td>
+                <td>813</td>
+                <td>整车数据</td>
+                <td>充放电状态</td>
+                <td>VCU_VehChg_STS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>3</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>146</td>
+                <td>614</td>
+                <td>814</td>
+                <td>整车数据</td>
+                <td>运行模式</td>
+                <td>VCU_DriveMode_STS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>147</td>
+                <td>601</td>
+                <td>815</td>
+                <td>整车数据</td>
+                <td>车速</td>
+                <td>ABS_VehSpd_GB1</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>148</td>
+                <td>637</td>
+                <td>816</td>
+                <td>整车数据</td>
+                <td>总里程</td>
+                <td>IC_OdometerMaster</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>63360</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>149</td>
+                <td>617</td>
+                <td>817</td>
+                <td>整车数据</td>
+                <td>总电压</td>
+                <td>BMS_PackVol_MEAS_GB</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>38930</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>150</td>
+                <td>617</td>
+                <td>818</td>
+                <td>整车数据</td>
+                <td>总电流</td>
+                <td>BMS_PackCur_MEAS_GB</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>151</td>
+                <td>617</td>
+                <td>819</td>
+                <td>整车数据</td>
+                <td>电池电量(SOC)</td>
+                <td>BMS_SocDisplay_EST_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>74</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>152</td>
+                <td>615</td>
+                <td>820</td>
+                <td>整车数据</td>
+                <td>DC-DC状态</td>
+                <td>DCDC_TBOX_Output_STS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>153</td>
+                <td>687</td>
+                <td>821</td>
+                <td>整车数据</td>
+                <td>高压对地绝缘电阻</td>
+                <td>BMS_MinInsuRes_MEAS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>55500</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>154</td>
+                <td>639</td>
+                <td>822</td>
+                <td>整车数据</td>
+                <td>挡位有效位</td>
+                <td>VCU_GearStatus_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>155</td>
+                <td>614</td>
+                <td>823</td>
+                <td>整车数据</td>
+                <td>挡位-制动有效位</td>
+                <td>VCU_BrkPedalStasus_GB2</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>156</td>
+                <td>614</td>
+                <td>824</td>
+                <td>整车数据</td>
+                <td>挡位-驱动有效位</td>
+                <td>VCU_DriverStatus_STS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>157</td>
+                <td>614</td>
+                <td>825</td>
+                <td>整车数据</td>
+                <td>档位</td>
+                <td>VCU_ActualGearLevelPosition</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>158</td>
+                <td>617</td>
+                <td>826</td>
+                <td>动力蓄电池</td>
+                <td>动力蓄电池包个数</td>
+                <td>BMS_PackNum</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>159</td>
+                <td>616</td>
+                <td>827</td>
+                <td>动力蓄电池</td>
+                <td>动力蓄电池包号</td>
+                <td>BMS_PackNum_EST</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>160</td>
+                <td>616</td>
+                <td>828</td>
+                <td>动力蓄电池</td>
+                <td>动力蓄电池包电压</td>
+                <td>BMS_PackVolN_MEAS</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>38930</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>161</td>
+                <td>616</td>
+                <td>829</td>
+                <td>动力蓄电池</td>
+                <td>动力蓄电池包电流</td>
+                <td>BMS_PackCur_MEAS_GB1</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>162</td>
+                <td>687</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>最小并联单元总数</td>
+                <td>BMS_parallelunitsNum</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>163</td>
+                <td>512</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part1_NumN1CellVol_MEAS</td>
+                <td>1000</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>164</td>
+                <td>512</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part1_NumN2CellVol_MEAS</td>
+                <td>1000</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>165</td>
+                <td>513</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>……</td>
+                <td>1000</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>166</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>167</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>6</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>168</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>7</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>169</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>8</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>170</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>9</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>171</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>10</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>172</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>11</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>173</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>12</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>174</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>13</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>175</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>14</td>
+                <td class="status-ok">正常</td>
+                <td>3329</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>176</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>15</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>177</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>16</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>178</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>17</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>179</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>18</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>180</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>19</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>181</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>20</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>182</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>21</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>183</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>22</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>184</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>23</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>185</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>24</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>186</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>25</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>187</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>26</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>188</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>27</td>
+                <td class="status-ok">正常</td>
+                <td>3329</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>189</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>28</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>190</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>29</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>191</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>30</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>192</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>31</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>193</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>32</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>194</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>33</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>195</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>34</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>196</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>35</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>197</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>36</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>198</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>37</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>199</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>38</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>200</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>39</td>
+                <td class="status-ok">正常</td>
+                <td>3326</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>201</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>40</td>
+                <td class="status-ok">正常</td>
+                <td>3329</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>202</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>41</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>203</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>42</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>204</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>43</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>205</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>44</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>206</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>45</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>207</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>46</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>208</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>47</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>209</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>48</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>210</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>49</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>211</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>50</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>212</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>51</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>213</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>52</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>214</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>53</td>
+                <td class="status-ok">正常</td>
+                <td>3329</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>215</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>54</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>216</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>55</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>217</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>56</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>218</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>57</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>219</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>58</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>220</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>59</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>221</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>60</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>222</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>61</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>223</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>62</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>224</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>63</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>225</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>64</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>226</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>65</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>227</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>66</td>
+                <td class="status-ok">正常</td>
+                <td>3330</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>228</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>67</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>229</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>68</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>230</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>69</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>231</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>70</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>232</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>71</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>233</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>72</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>234</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>73</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>235</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>74</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>236</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>75</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>237</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>76</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>238</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>77</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>239</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>78</td>
+                <td class="status-ok">正常</td>
+                <td>3326</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>240</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>79</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>241</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>80</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>242</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>81</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>243</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>82</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>244</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>83</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>245</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>84</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>246</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>85</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>247</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>86</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>248</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>87</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>249</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>88</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>250</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>89</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>251</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>90</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>252</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>91</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>253</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>92</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>254</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>93</td>
+                <td class="status-ok">正常</td>
+                <td>3329</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>255</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>94</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>256</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>95</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>257</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>96</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>258</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>97</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>259</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>98</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>260</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>99</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>261</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>100</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>262</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>101</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>263</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>102</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>264</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>103</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>265</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>104</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>266</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>105</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>267</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>106</td>
+                <td class="status-ok">正常</td>
+                <td>3329</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>268</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>107</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>269</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>108</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>270</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>109</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>271</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>110</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>272</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>111</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>273</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>112</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>274</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>113</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>275</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>114</td>
+                <td class="status-ok">正常</td>
+                <td>3328</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>276</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>115</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>277</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>116</td>
+                <td class="status-ok">正常</td>
+                <td>3327</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>278</td>
+                <td>514</td>
+                <td>830</td>
+                <td>动力蓄电池</td>
+                <td>本帧最小并联单元电压</td>
+                <td>BMS_Part_NumNNCellVol_MEAS</td>
+                <td>1000</td>
+                <td>117</td>
+                <td class="status-ok">正常</td>
+                <td>3326</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>279</td>
+                <td>617</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>动力蓄电池包温度探针个数</td>
+                <td>BMS_PackTempNum</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>280</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumN1ProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>281</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumN2ProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>31</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>282</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>……</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>283</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>284</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-ok">正常</td>
+                <td>31</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>285</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>7</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>286</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>8</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>287</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>9</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>288</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>10</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>289</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>11</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>290</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>12</td>
+                <td class="status-ok">正常</td>
+                <td>31</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>291</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>13</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>292</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>14</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>293</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>15</td>
+                <td class="status-ok">正常</td>
+                <td>31</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>294</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>16</td>
+                <td class="status-ok">正常</td>
+                <td>31</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>295</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>17</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>296</td>
+                <td>516</td>
+                <td>831</td>
+                <td>动力蓄电池</td>
+                <td>各探针检测到的温度</td>
+                <td>BMS_NumNNProbeTemp_MEAS</td>
+                <td>-</td>
+                <td>18</td>
+                <td class="status-ok">正常</td>
+                <td>30</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>297</td>
+                <td>613</td>
+                <td>837</td>
+                <td>驱动电机</td>
+                <td>驱动电机个数</td>
+                <td>MCU_TBOX_Num</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>298</td>
+                <td>611</td>
+                <td>838</td>
+                <td>驱动电机</td>
+                <td>驱动电机序号</td>
+                <td>MCU_SerialNum_EST_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>299</td>
+                <td>611</td>
+                <td>839</td>
+                <td>驱动电机</td>
+                <td>驱动电机状态</td>
+                <td>MCU_Work_STS_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>300</td>
+                <td>611</td>
+                <td>840</td>
+                <td>驱动电机</td>
+                <td>驱动电机控制器温度</td>
+                <td>MCU_InvTemp_MEAS_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>301</td>
+                <td>611</td>
+                <td>841</td>
+                <td>驱动电机</td>
+                <td>驱动电机转速</td>
+                <td>MCU_Spd_MEAS_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>302</td>
+                <td>612</td>
+                <td>842</td>
+                <td>驱动电机</td>
+                <td>驱动电机转矩</td>
+                <td>MCU_Trq_MEAS_GB</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>303</td>
+                <td>611</td>
+                <td>843</td>
+                <td>驱动电机</td>
+                <td>驱动电机温度</td>
+                <td>MCU_MotTemp_MEAS_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>304</td>
+                <td>614</td>
+                <td>884</td>
+                <td>报警数据</td>
+                <td>最高报警等级</td>
+                <td>VCU_TBOX_VehFailGrade_ERR</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>305</td>
+                <td>628</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>通用报警故障总数（矩阵没信号）</td>
+                <td>VCU_TBOX_GeneralFaultNum_EST</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>306</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>温度差异报警</td>
+                <td>BMS_TBOX_ProbeTempDiff_ERR</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>307</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>电池高温报警</td>
+                <td>BMS_TBOX_ProbeHighTemp_ERR</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>308</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>车载储能装置类型过压报警</td>
+                <td>BMS_TBOX_PackHighVol_ERR</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>309</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>车载储能装置类型欠压报警</td>
+                <td>BMS_TBOX_PackLowVol_ERR</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>310</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>SOC低报警</td>
+                <td>BMS_TBOX_LowSOC_ERR</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>311</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>最小并联单元过压报警</td>
+                <td>BMS_TBOX_CellHighVol_ERR</td>
+                <td>-</td>
+                <td>7</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>312</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>最小并联单元欠压报警</td>
+                <td>BMS_TBOX_CellLowVol_ERR</td>
+                <td>-</td>
+                <td>8</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>313</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>SOC过高报警</td>
+                <td>BMS_TBOX_HighSOC_ERR</td>
+                <td>-</td>
+                <td>9</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>314</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>SOC跳变报警</td>
+                <td>BMS_TBOX_SOCJump_ERR</td>
+                <td>-</td>
+                <td>10</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>315</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>可充电储能系统不匹配报警</td>
+                <td>BMS_TBOX_PackMatch_ERR</td>
+                <td>-</td>
+                <td>11</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>316</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>最小并联单元一致性差报警</td>
+                <td>BMS_TBOX_CellVoltDiff_ERR</td>
+                <td>-</td>
+                <td>12</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>317</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>绝缘电阻失效报警</td>
+                <td>BMS_TBOX_PackInsu_ERR</td>
+                <td>-</td>
+                <td>13</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>318</td>
+                <td>615</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>DC-DC温度报警</td>
+                <td>DCDC_TBOX_OT_ERR</td>
+                <td>-</td>
+                <td>14</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>319</td>
+                <td>221</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>制动系统报警</td>
+                <td>ABS_EbdFlgFlt</td>
+                <td>-</td>
+                <td>15</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>320</td>
+                <td>615</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>DC-DC状态报警</td>
+                <td>DCDC_TBOX_SysWarn_ERR</td>
+                <td>-</td>
+                <td>16</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>321</td>
+                <td>613</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>驱动电机控制器温度报警</td>
+                <td>MCU_TBOX_OT_IGBT_ERR_GB</td>
+                <td>-</td>
+                <td>17</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>322</td>
+                <td>614</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>高压互锁状态报警</td>
+                <td>VCU_TBOX_FlgHVIL_ERR_VCU</td>
+                <td>-</td>
+                <td>18</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>323</td>
+                <td>613</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>驱动电机温度报警</td>
+                <td>MCU_TBOX_OT_Mot_ERR_GB</td>
+                <td>-</td>
+                <td>19</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>324</td>
+                <td>523</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>车载储能装置类型过充</td>
+                <td>BMS_TBOX_PackOverCharge_ERR</td>
+                <td>-</td>
+                <td>20</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>325</td>
+                <td>613</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>驱动电机超速报警</td>
+                <td>MCU_TBOX_OverSpd_ERR</td>
+                <td>-</td>
+                <td>21</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>326</td>
+                <td>613</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>驱动电机过流报警</td>
+                <td>MCU_TBOX_OverCurrent_ERR</td>
+                <td>-</td>
+                <td>22</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>327</td>
+                <td>TBD</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>超级电容过温报警</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>328</td>
+                <td>TBD</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>超级电容过压报警</td>
+                <td>-</td>
+                <td>-</td>
+                <td>24</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>329</td>
+                <td>323</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>可充电储能装置热事件报警</td>
+                <td>BMS_Fire_ERR</td>
+                <td>-</td>
+                <td>25</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>330</td>
+                <td>TBD</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>氢气泄漏异常报警</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>331</td>
+                <td>TBD</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>车载氢系统压力异常报警;</td>
+                <td>-</td>
+                <td>-</td>
+                <td>27</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>332</td>
+                <td>TBD</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>车载氢系统温度异常报警</td>
+                <td>-</td>
+                <td>-</td>
+                <td>28</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>333</td>
+                <td>TBD</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>燃料电池电堆超温报警</td>
+                <td>-</td>
+                <td>-</td>
+                <td>29</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>334</td>
+                <td>预留</td>
+                <td>885</td>
+                <td>报警数据</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>30</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>335</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>可充电储能装置故障总数</td>
+                <td>BMS_TBOX_TotalFaultNum_EST</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>336</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>温度差异报警</td>
+                <td>BMS_TBOX_ProbeTempDiff_ERR</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>337</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>电池高温报警</td>
+                <td>BMS_TBOX_ProbeHighTemp_ERR</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>338</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>车载储能装置类型过压报警</td>
+                <td>BMS_TBOX_PackHighVol_ERR</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>339</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>车载储能装置类型欠压报警</td>
+                <td>BMS_TBOX_PackLowVol_ERR</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>340</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>SOC低报警</td>
+                <td>BMS_TBOX_LowSOC_ERR</td>
+                <td>-</td>
+                <td>6</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>341</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>最小并联单元过压报警</td>
+                <td>BMS_TBOX_CellHighVol_ERR</td>
+                <td>-</td>
+                <td>7</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>342</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>最小并联单元欠压报警</td>
+                <td>BMS_TBOX_CellLowVol_ERR</td>
+                <td>-</td>
+                <td>8</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>343</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>SOC过高报警</td>
+                <td>BMS_TBOX_HighSOC_ERR</td>
+                <td>-</td>
+                <td>9</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>344</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>SOC跳变报警</td>
+                <td>BMS_TBOX_SOCJump_ERR</td>
+                <td>-</td>
+                <td>10</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>345</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>可充电储能系统不匹配报警</td>
+                <td>BMS_TBOX_PackMatch_ERR</td>
+                <td>-</td>
+                <td>11</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>346</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>最小并联单元一致性差报警</td>
+                <td>BMS_TBOX_CellVoltDiff_ERR</td>
+                <td>-</td>
+                <td>12</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>347</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>绝缘电阻失效报警</td>
+                <td>BMS_TBOX_PackInsu_ERR</td>
+                <td>-</td>
+                <td>13</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>348</td>
+                <td>523</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>车载储能装置类型过充</td>
+                <td>BMS_TBOX_PackOverCharge_ERR</td>
+                <td>-</td>
+                <td>14</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>349</td>
+                <td>323</td>
+                <td>886</td>
+                <td>报警数据</td>
+                <td>可充电储能装置热事件报警</td>
+                <td>BMS_Fire_ERR</td>
+                <td>-</td>
+                <td>15</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>350</td>
+                <td>613</td>
+                <td>887</td>
+                <td>报警数据</td>
+                <td>驱动电机故障总数</td>
+                <td>MCU_TBOX_FailNum_ERR_GB</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>351</td>
+                <td>613</td>
+                <td>887</td>
+                <td>报警数据</td>
+                <td>驱动电机控制器温度报警</td>
+                <td>MCU_TBOX_OT_IGBT_ERR_GB</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>352</td>
+                <td>613</td>
+                <td>887</td>
+                <td>报警数据</td>
+                <td>驱动电机温度报警</td>
+                <td>MCU_TBOX_OT_Mot_ERR_GB</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>353</td>
+                <td>613</td>
+                <td>887</td>
+                <td>报警数据</td>
+                <td>驱动电机超速报警</td>
+                <td>MCU_TBOX_OverSpd_ERR</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>354</td>
+                <td>613</td>
+                <td>887</td>
+                <td>报警数据</td>
+                <td>驱动电机过流报警</td>
+                <td>MCU_TBOX_OverCurrent_ERR</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>355</td>
+                <td>614</td>
+                <td>888</td>
+                <td>报警数据</td>
+                <td>其他故障总数</td>
+                <td>VCU_TBOX_OtherFaultNum_EST</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>356</td>
+                <td>615</td>
+                <td>888</td>
+                <td>报警数据</td>
+                <td>DC-DC温度报警</td>
+                <td>DCDC_TBOX_OT_ERR</td>
+                <td>-</td>
+                <td>2</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>357</td>
+                <td>221</td>
+                <td>888</td>
+                <td>报警数据</td>
+                <td>制动系统报警</td>
+                <td>ABS_EbdFlgFlt</td>
+                <td>-</td>
+                <td>3</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>358</td>
+                <td>615</td>
+                <td>888</td>
+                <td>报警数据</td>
+                <td>DC-DC状态报警</td>
+                <td>DCDC_TBOX_SysWarn_ERR</td>
+                <td>-</td>
+                <td>4</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>359</td>
+                <td>614</td>
+                <td>888</td>
+                <td>报警数据</td>
+                <td>高压互锁状态报警</td>
+                <td>VCU_TBOX_FlgHVIL_ERR_VCU</td>
+                <td>-</td>
+                <td>5</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>360</td>
+                <td>687</td>
+                <td>889</td>
+                <td>登入数据</td>
+                <td>电池管理系统总数</td>
+                <td>BMS_TotalNum</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>361</td>
+                <td>687</td>
+                <td>890</td>
+                <td>登入数据</td>
+                <td>电池管理系统对应动力蓄电池包个数</td>
+                <td>BMS_BatteryPackNum</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>362</td>
+                <td>541</td>
+                <td>986</td>
+                <td>蓄电池电流</td>
+                <td>-</td>
+                <td>EBS_I_BATT</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>-4</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>363</td>
+                <td>557</td>
+                <td>987</td>
+                <td>放电电流超过预设门限</td>
+                <td>-</td>
+                <td>EBS_DisChargeCurrWU</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>364</td>
+                <td>557</td>
+                <td>988</td>
+                <td>充电电流超过预设门限</td>
+                <td>-</td>
+                <td>EBS_ChargeCurrWU</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>365</td>
+                <td>557</td>
+                <td>989</td>
+                <td>SOC低于预设门限</td>
+                <td>-</td>
+                <td>EBS_LowSOCWU</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>366</td>
+                <td>557</td>
+                <td>990</td>
+                <td>SOC高于预设门限</td>
+                <td>-</td>
+                <td>EBS_HighSOCWU</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>367</td>
+                <td>639</td>
+                <td>1000</td>
+                <td>估算车重</td>
+                <td>-</td>
+                <td>VCU_VehicleMass</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>2100</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>368</td>
+                <td>639</td>
+                <td>1001</td>
+                <td>车重信号可靠性</td>
+                <td>-</td>
+                <td>VCU_VehicleMass_Reliability</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>369</td>
+                <td>639</td>
+                <td>1002</td>
+                <td>估算道路坡度</td>
+                <td>-</td>
+                <td>VCU_RoadGradient</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>-1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>370</td>
+                <td>310</td>
+                <td>1020</td>
+                <td>上锁解锁方式信息</td>
+                <td>-</td>
+                <td>BCM_LockUnlockFeedback</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>371</td>
+                <td>324</td>
+                <td>1028</td>
+                <td>远程启动使能开关设置状态</td>
+                <td>-</td>
+                <td>PEPS_RemoteStartSettingStatus</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>372</td>
+                <td>387</td>
+                <td>1049</td>
+                <td>平均电耗</td>
+                <td>-</td>
+                <td>IC_Average_Current_Drain</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>373</td>
+                <td>694</td>
+                <td>1050</td>
+                <td>纯电续航里程</td>
+                <td>-</td>
+                <td>HCU_CurDTE_EST</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1023</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>374</td>
+                <td>51C</td>
+                <td>1053</td>
+                <td>智能补电请求</td>
+                <td>-</td>
+                <td>BCM_PwrSulReq</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>375</td>
+                <td>639</td>
+                <td>1054</td>
+                <td>CG状态</td>
+                <td>-</td>
+                <td>VCU_CGRelay_STS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>376</td>
+                <td>211</td>
+                <td>1055</td>
+                <td>左前轮速</td>
+                <td>-</td>
+                <td>ABS_WhlSpdFrntLe</td>
+                <td>10000</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>377</td>
+                <td>211</td>
+                <td>1056</td>
+                <td>右前轮速</td>
+                <td>-</td>
+                <td>ABS_WhlSpdFrntRi</td>
+                <td>10000</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>378</td>
+                <td>211</td>
+                <td>1057</td>
+                <td>左后轮速</td>
+                <td>-</td>
+                <td>ABS_WhlSpdReLe</td>
+                <td>10000</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>379</td>
+                <td>211</td>
+                <td>1058</td>
+                <td>右后轮速</td>
+                <td>-</td>
+                <td>ABS_WhlSpdReRi</td>
+                <td>10000</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>380</td>
+                <td>692</td>
+                <td>1065</td>
+                <td>满电预估续航里程</td>
+                <td>满电预估续航里程</td>
+                <td>VCU_CurDTE_FULL</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>317</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>381</td>
+                <td>540</td>
+                <td>1182</td>
+                <td>显示屏状态</td>
+                <td>显示屏状态</td>
+                <td>ACM_LCD_Status</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>1</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>382</td>
+                <td>540</td>
+                <td>1183</td>
+                <td>远控空调状态</td>
+                <td>远控空调状态</td>
+                <td>ACM_RemoteControlMode</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>383</td>
+                <td>616</td>
+                <td>1199</td>
+                <td>负极绝缘故障</td>
+                <td>-</td>
+                <td>BMS_NegInsuRes_MEAS</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>55500</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>384</td>
+                <td>68C</td>
+                <td>1201</td>
+                <td>单度充电时长</td>
+                <td>-</td>
+                <td>BMS_Single_Degree_Charging_Duration</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>385</td>
+                <td>68C</td>
+                <td>1202</td>
+                <td>单次充电电量</td>
+                <td>-</td>
+                <td>BMS_SingleCharging_Ampere_Hours</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>386</td>
+                <td>68C</td>
+                <td>1203</td>
+                <td>累计回充电量</td>
+                <td>-</td>
+                <td>BMS_Kinetic_Energy_Recovery</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>387</td>
+                <td>68C</td>
+                <td>1204</td>
+                <td>累计耗电量</td>
+                <td>-</td>
+                <td>BMS_Cumulative_Power_Consumption</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>388</td>
+                <td>68C</td>
+                <td>1205</td>
+                <td>累计充入电量</td>
+                <td>-</td>
+                <td>BMS_Cumulative_Energy_Input</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>389</td>
+                <td>68C</td>
+                <td>1206</td>
+                <td>充电效率</td>
+                <td>-</td>
+                <td>BMS_Charging_Efficiency</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>390</td>
+                <td>68B</td>
+                <td>1207</td>
+                <td>续航达标率</td>
+                <td>-</td>
+                <td>VCU_Mileage_Achievement_Rate</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>391</td>
+                <td>68B</td>
+                <td>1208</td>
+                <td>动态瞬时电耗</td>
+                <td>-</td>
+                <td>VCU_Instan_Power_Consu_Dynam</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>392</td>
+                <td>68B</td>
+                <td>1209</td>
+                <td>静态瞬时电耗</td>
+                <td>-</td>
+                <td>VCU_Instan_Power_Consu_Static</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>393</td>
+                <td>358</td>
+                <td>1210</td>
+                <td>定速巡航</td>
+                <td>-</td>
+                <td>VCU_CruiseControlStatus</td>
+                <td>-</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>394</td>
+                <td>358</td>
+                <td>1211</td>
+                <td>巡航设定速度</td>
+                <td>-</td>
+                <td>VCU_TargCruiseSpeed</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-ok">正常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>395</td>
+                <td>303</td>
+                <td>1212</td>
+                <td>PTC实际功率信号</td>
+                <td>PTC实际功率信号</td>
+                <td>FACM_PtcPwr_EST</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>396</td>
+                <td>303</td>
+                <td>1213</td>
+                <td>AC实际功率信号</td>
+                <td>AC实际功率信号</td>
+                <td>FACM_AcPwr_EST</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>397</td>
+                <td>697</td>
+                <td>1214</td>
+                <td>电机效率</td>
+                <td>电机效率</td>
+                <td>MCU_Work_Efficiency</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>398</td>
+                <td>226</td>
+                <td>1215</td>
+                <td>电机实际功率</td>
+                <td>电机实际功率</td>
+                <td>MCU_MotorPwr_MEAS</td>
+                <td>100</td>
+                <td>1</td>
+                <td class="status-error">异常</td>
+                <td>0</td>
+                <td>-</td>
+            </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            报告生成时间: 2026-07-28 16:03:10
+        </div>
+    </div>
+</body>
+</html>

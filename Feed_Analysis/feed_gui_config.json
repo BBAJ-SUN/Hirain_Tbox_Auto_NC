@@ -1,0 +1,9 @@
+{
+  "feed_path": "D:\\FeedConsumer\\FeedOut.txt",
+  "window": "全部",
+  "mapping_path": "D:\\实车半自动化\\JMC海外Feed小工具\\Feed数据对应表.xlsx",
+  "vba_project": "EKS2FHEV",
+  "data_source": "FEED-IDEA",
+  "fesn": "1XA0001G",
+  "signal_filter": ""
+}

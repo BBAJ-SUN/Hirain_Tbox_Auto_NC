@@ -1,0 +1,45 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.2)
+
+2026-09-29 10:57:42.264  INFO 27664 --- [           main] c.a.t.e.FeedConsumerExampleApplication   : Starting FeedConsumerExampleApplication using Java 17.0.11 on fuchengli1L with PID 27664 (D:\实车半自动化\Test_AUTO\Feed_Analysis\feed-consumer-examples-LOCAL-SNAPSHOT.jar started by fucheng.li1 in D:\实车半自动化\Test_AUTO\Feed_Analysis)
+2026-09-29 10:57:42.266  INFO 27664 --- [           main] c.a.t.e.FeedConsumerExampleApplication   : The following profiles are active: jsonFormatter
+2026-09-29 10:57:42.494  WARN 27664 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2026-09-29 10:57:44.643  INFO 27664 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8082 (http)
+2026-09-29 10:57:44.659  INFO 27664 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-29 10:57:44.659  INFO 27664 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2026-09-29 10:57:44.781  INFO 27664 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-29 10:57:44.781  INFO 27664 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2415 ms
+2026-09-29 10:57:46.340  INFO 27664 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2026-09-29 10:57:46.749  INFO 27664 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoint(s) beneath base path '/actuator'
+2026-09-29 10:57:46.872  INFO 27664 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8082 (http) with context path ''
+2026-09-29 10:57:46.887  INFO 27664 --- [           main] c.a.t.e.FeedConsumerExampleApplication   : Started FeedConsumerExampleApplication in 5.526 seconds (JVM running for 6.626)
+2026-09-29 10:57:49.368  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gE= ] from default starting point.
+2026-09-29 10:57:49.369  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYAQ== ] from default starting point.
+2026-09-29 10:57:49.369  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYAg== ] from default starting point.
+2026-09-29 10:57:49.369  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYAw== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYBA== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYBQ== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYBg== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYBw== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYCA== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYCQ== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYCg== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYCw== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYDA== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYDQ== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYDg== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYDw== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYEA== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYEQ== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYEg== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYEw== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYFA== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYFQ== ] from default starting point.
+2026-09-29 10:57:49.370  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYFg== ] from default starting point.
+2026-09-29 10:57:49.371  INFO 27664 --- [           main] c.a.e.feed.checkpoint.CheckpointMapper   : Checkpoint not found. The SDK will start reading [Shard: CAEQ5+DU4gEYFw== ] from default starting point.
